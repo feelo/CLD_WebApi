@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_ChileDigitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_CD_Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="pregunta" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="FK_TipoPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_CD_Tipo_Pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_pregunta" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TB_CD_Item_TB_CD_Tipo_Pregunta">
+          <End Role="TB_CD_Tipo_Pregunta" Type="Self.TB_CD_Tipo_Pregunta" Multiplicity="1" />
+          <End Role="TB_CD_Item" Type="Self.TB_CD_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CD_Tipo_Pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_CD_Item">
+              <PropertyRef Name="FK_TipoPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ChileDigitalModelStoreContainer">
+          <EntitySet Name="TB_CD_Item" EntityType="Self.TB_CD_Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_CD_Tipo_Pregunta" EntityType="Self.TB_CD_Tipo_Pregunta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TB_CD_Item_TB_CD_Tipo_Pregunta" Association="Self.FK_TB_CD_Item_TB_CD_Tipo_Pregunta">
+            <End Role="TB_CD_Tipo_Pregunta" EntitySet="TB_CD_Tipo_Pregunta" />
+            <End Role="TB_CD_Item" EntitySet="TB_CD_Item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_ChileDigitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_CD_Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="pregunta" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_TipoPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TB_CD_Tipo_Pregunta" Relationship="Self.FK_TB_CD_Item_TB_CD_Tipo_Pregunta" FromRole="TB_CD_Item" ToRole="TB_CD_Tipo_Pregunta" />
+        </EntityType>
+        <EntityType Name="TB_CD_Tipo_Pregunta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_pregunta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_CD_Item" Relationship="Self.FK_TB_CD_Item_TB_CD_Tipo_Pregunta" FromRole="TB_CD_Tipo_Pregunta" ToRole="TB_CD_Item" />
+        </EntityType>
+        <Association Name="FK_TB_CD_Item_TB_CD_Tipo_Pregunta">
+          <End Role="TB_CD_Tipo_Pregunta" Type="Self.TB_CD_Tipo_Pregunta" Multiplicity="1" />
+          <End Role="TB_CD_Item" Type="Self.TB_CD_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_CD_Tipo_Pregunta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TB_CD_Item">
+              <PropertyRef Name="FK_TipoPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_ChileDigitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_CD_Item" EntityType="Self.TB_CD_Item" />
+          <EntitySet Name="TB_CD_Tipo_Pregunta" EntityType="Self.TB_CD_Tipo_Pregunta" />
+          <AssociationSet Name="FK_TB_CD_Item_TB_CD_Tipo_Pregunta" Association="Self.FK_TB_CD_Item_TB_CD_Tipo_Pregunta">
+            <End Role="TB_CD_Tipo_Pregunta" EntitySet="TB_CD_Tipo_Pregunta" />
+            <End Role="TB_CD_Item" EntitySet="TB_CD_Item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_ChileDigitalModelStoreContainer" CdmEntityContainer="DB_ChileDigitalEntities">
+          <EntitySetMapping Name="TB_CD_Item">
+            <EntityTypeMapping TypeName="DB_ChileDigitalModel.TB_CD_Item">
+              <MappingFragment StoreEntitySet="TB_CD_Item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pregunta" ColumnName="pregunta" />
+                <ScalarProperty Name="FK_TipoPregunta" ColumnName="FK_TipoPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_CD_Tipo_Pregunta">
+            <EntityTypeMapping TypeName="DB_ChileDigitalModel.TB_CD_Tipo_Pregunta">
+              <MappingFragment StoreEntitySet="TB_CD_Tipo_Pregunta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipo_pregunta" ColumnName="tipo_pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

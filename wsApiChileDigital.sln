@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wsApiChileDigital", "wsApiChileDigital\wsApiChileDigital.csproj", "{F6EB7C2F-2BC4-43BA-9F11-634F2EE444CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{839F2B75-AE84-40B5-BBD5-CA43071CA11F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F6EB7C2F-2BC4-43BA-9F11-634F2EE444CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6EB7C2F-2BC4-43BA-9F11-634F2EE444CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6EB7C2F-2BC4-43BA-9F11-634F2EE444CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839F2B75-AE84-40B5-BBD5-CA43071CA11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839F2B75-AE84-40B5-BBD5-CA43071CA11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839F2B75-AE84-40B5-BBD5-CA43071CA11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839F2B75-AE84-40B5-BBD5-CA43071CA11F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
